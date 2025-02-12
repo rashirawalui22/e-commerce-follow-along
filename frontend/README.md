@@ -1,8 +1,25 @@
-# React + Vite
+### Milestone 15: Navbar Component Integration
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+In this milestone, we'll create and integrate a reusable Navbar component across all screens for smooth navigation.
 
-Currently, two official plugins are available:
+#### Key Tasks:
+- Create a Navbar with links to:
+  - Home
+  - My Products
+  - Add Product
+  - Cart
+- Make the Navbar responsive.
+- Add the Navbar to all pages for easy navigation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This milestone teaches how to build and reuse a responsive Navbar for seamless navigation.
+
+### Milestone 16: Product Info Page
+
+In this milestone, we will create a page to display product details, choose quantity, and add to the cart.
+
+#### Key Tasks:
+- Create a page to display product data.
+- Add a quantity selector.
+- Implement an "Add to Cart" button.
+
+This milestone focuses on building a functional product info page for users.
