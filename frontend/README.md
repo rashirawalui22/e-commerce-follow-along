@@ -7,4 +7,4 @@
 1. Developed an API endpoint: Allowed the frontend to send requests to retrieve cart products.
 2. Fetched Cart Data: Implemented a query to get products inside the cart for a specific user.
 3. Tested API Responses: Ensured data retrieval worked seamlessly.
----
+---.
