@@ -104,7 +104,7 @@ router.post("/add-address", catchAsyncErrors(async (req, res, next) => {
   const newAddress = {
       country,
       city,
-      address1,
+      address1, 
       address2,
       zipCode,
       addressType,
@@ -115,7 +115,8 @@ router.post("/add-address", catchAsyncErrors(async (req, res, next) => {
       success: true,
       addresses: user.addresses,
   });
-}));
+})); 
 
-
+ 
+/***/
 module.exports = router;
