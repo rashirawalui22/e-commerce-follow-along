@@ -1,10 +1,9 @@
-### Milestone 20: User Profile Page
+### Milestone 22: Store Address in User Profile
 
-In this milestone, we will build a frontend profile page to display user data and create a backend endpoint to retrieve that data.
+In this milestone, we have implemented a backend endpoint that allows users to store their address inside their profile in the database. This feature enhances user personalization and enables future location-based functionalities.
 
 #### Key Tasks:
-- Create a backend endpoint to send user data using their email.
-- Design a frontend profile page to display the user’s profile photo, name, email, and addresses.
-- Add a section for addresses with an “Add Address” button, and display “No address found” if no address exists.
+- Create a backend endpoint to store user addresses.
+- Understand how to update an array field in the user collection.
+- Handle data received from the frontend address form.
 
-This milestone enhances the user experience by providing a profile page to view and manage their information.
