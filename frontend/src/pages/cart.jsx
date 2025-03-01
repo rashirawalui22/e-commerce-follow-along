@@ -1,3 +1,4 @@
+// Cart.jsx
 import React, { useState, useEffect } from 'react';
 import CartProduct from '../components/auth/CartProduct';
 import NavBar from '../components/auth/nav';

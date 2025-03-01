@@ -1,73 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
-function Myproduct({ _id, name, images, description, price }) {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!images || images.length === 0) return;
-        const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 2000);
-        return () => clearInterval(interval);
-    }, [images]);
-
-    const currentImage = images && images.length > 0 ? images[currentIndex] : null;
-
-    const handleEdit = () => {
-        navigate(`/create-product/${_id}`);
-    };
-
-    const handleDelete = async () => {
-        try {
-            const response = await axios.delete(
-                `http://localhost:8000/api/v2/product/delete-product/${_id}`
-            );
-            if (response.status === 200) {
-                alert("Product deleted successfully!");
-                // Reload the page or fetch products again
-                window.location.reload();
-            }
-        } catch (err) {
-            console.error("Error deleting product:", err);
-            alert("Failed to delete product.");
-        }
-    };
-
-    return (
-        <>
-            <div className="bg-neutral-200 p-4 rounded-lg shadow-md flex flex-col justify-between">
-                <div className="w-full">
-                    {currentImage && (
-                        <img
-                            src={`http://localhost:8000${currentImage}`}
-                            alt={name}
-                            className="w-full h-56 object-cover rounded-lg mb-2"
-                        />
-                    )}
-                    <h2 className="text-lg font-bold">{name}</h2>
-                    <p className="text-sm opacity-75 mt-2">{description}</p>
-                </div>
-                <div className="w-full mt-4">
-                    <p className="text-lg font-bold my-2">${price.toFixed(2)}</p>
-                    <button
-                        className="w-full text-white px-4 py-2 rounded-md bg-neutral-900 hover:bg-neutral-700 transition duration-300"
-                        onClick={handleEdit}
-                    >
-                        Edit
-                    </button>
-                    <button
-                        onClick={handleDelete}
-                        className="w-full text-white px-4 py-2 rounded-md bg-red-600 hover:bg-red-400 transition duration-300 mt-2"
-                    >
-                        Delete
-                    </button>
-                </div>
-            </div>
-        </>
-        );
-    }
-
-export default Myproduct;
+export default function Product({_id, country, city, address1, address2, zipCode, addressType,}) {
+	return (
+		<div className="w-full h-max bg-transparent p-5 rounded-lg border border-neutral-600 grid grid-cols-12 gap-5">
+			<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2">
+				<div className="w-full h-max bg-neutral-700 rounded-lg flex flex-col gap-y-2">
+					<div className="w-full h-max break-all text-xl text-neutral-200">
+						Country
+					</div>
+					<div className="w-full h-max break-all text-lg font-light text-neutral-200">
+						{country}
+					</div>
+				</div>
+			</div>
+			<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2">
+				<div className="w-full h-max bg-neutral-700 rounded-lg flex flex-col gap-y-2">
+					<div className="w-full h-max break-all text-xl text-neutral-200">
+						City
+					</div>
+					<div className="w-full h-max break-all text-lg font-light text-neutral-200">
+						{city}
+					</div>
+				</div>
+			</div>
+			<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2">
+				<div className="w-full h-max bg-neutral-700 rounded-lg flex flex-col gap-y-2">
+					<div className="w-full h-max break-all text-xl text-neutral-200">
+						Address 1
+					</div>
+					<div className="w-full h-max break-all text-lg font-light text-neutral-200">
+						{address1}
+					</div>
+				</div>
+			</div>
+			<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2">
+				<div className="w-full h-max bg-neutral-700 rounded-lg flex flex-col gap-y-2">
+					<div className="w-full h-max break-all text-xl text-neutral-200">
+						Address 2
+					</div>
+					<div className="w-full h-max break-all text-lg font-light text-neutral-200">
+						{address2}
+					</div>
+				</div>
+			</div>
+			<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2">
+				<div className="w-full h-max bg-neutral-700 rounded-lg flex flex-col gap-y-2">
+					<div className="w-full h-max break-all text-xl text-neutral-200">
+						Zip Code
+					</div>
+					<div className="w-full h-max break-all text-lg font-light text-neutral-200">
+						{zipCode}
+					</div>
+				</div>
+			</div>
+			<div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2">
+				<div className="w-full h-max bg-neutral-700 rounded-lg flex flex-col gap-y-2">
+					<div className="w-full h-max break-all text-xl text-neutral-200">
+						Address Type
+					</div>
+					<div className="w-full h-max break-all text-lg font-light text-neutral-200">
+						{addressType}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}

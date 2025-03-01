@@ -1,9 +1,11 @@
-### Milestone 22: Store Address in User Profile
+### Milestone 23: Select Address Page & Order Schema
 
-In this milestone, we have implemented a backend endpoint that allows users to store their address inside their profile in the database. This feature enhances user personalization and enables future location-based functionalities.
+In this milestone, we have implemented the "Select Address" page in the frontend and written the product schema for orders in the backend. This enhances the user experience by allowing users to choose a delivery address before placing an order.
+
 
 #### Key Tasks:
-- Create a backend endpoint to store user addresses.
-- Understand how to update an array field in the user collection.
-- Handle data received from the frontend address form.
+- Add a "Place Order" button inside the cart page.
+- Implement a "Select Address" page displaying all saved addresses.
+- Create a backend endpoint to fetch user addresses.
+- Design a Mongoose schema to store order details.
 
