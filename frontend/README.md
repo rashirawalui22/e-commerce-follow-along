@@ -1,4 +1,9 @@
-Milestone 30📝
-Implemented online payment using PayPal API using the client key you created earlier.
+Milestone 31: Global State with Redux
+Set up Redux to manage the user's email globally.
 
-Downloaded NPM package called react-paypal-js that will provide an component called PayPalScriptProvider which will display online payment methods like credit or debit card etc.
+Key Tasks:
+Install react-redux.
+Create store.js and userActions.js.
+Configure userReducer to store email.
+Wrap App with Provider.
+This milestone enables centralized state management
