@@ -6,7 +6,7 @@ const router = express.Router();
 const { upload } = require("../multer");
 const ErrorHandler = require("../utils/ErrorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncError");
-// const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 // const sendMail = require("../utils/sendMail");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
@@ -63,17 +63,32 @@ router.post(
         return next(new ErrorHandler("Invalid Email or Password", 401));
     }
     const isPasswordMatched = await bcrypt.compare(password, user.password);
-    console.log("At Auth", "Password: ", password, "Hash: ", user.password);
     console.log(isPasswordMatched)
     if (!isPasswordMatched) {
         return next(new ErrorHandler("Invalid Email or Password", 401));
     }
-    user.password = undefined;
+    // Generate JWT token
+    const token = jwt.sign(
+      { id: user._id, email: user.email },
+      process.env.JWT_SECRET || "your_jwt_secret",
+      { expiresIn: "1h" }
+  );
+
+  // Set token in an HttpOnly cookie
+  res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // use true in production
+      sameSite: "Strict",
+      maxAge: 3600000, // 1 hour
+  });
+
+  user.password = undefined; // Remove password from response
     res.status(200).json({
         success: true,
         user,
     });
 }));
+
 router.get("/profile", catchAsyncErrors(async (req, res, next) => {
   const { email } = req.query;
   if (!email) {
@@ -94,6 +109,7 @@ router.get("/profile", catchAsyncErrors(async (req, res, next) => {
       addresses: user.addresses,
   });
 }));
+
 router.post("/add-address", catchAsyncErrors(async (req, res, next) => {
   const { country, city, address1, address2, zipCode, addressType, email } = req.body;
 
@@ -104,7 +120,7 @@ router.post("/add-address", catchAsyncErrors(async (req, res, next) => {
   const newAddress = {
       country,
       city,
-      address1, 
+      address1,
       address2,
       zipCode,
       addressType,
@@ -115,8 +131,7 @@ router.post("/add-address", catchAsyncErrors(async (req, res, next) => {
       success: true,
       addresses: user.addresses,
   });
-})); 
-
+}));
 
 router.get("/addresses", catchAsyncErrors(async (req, res, next) => {
   const { email } = req.query;
@@ -133,6 +148,5 @@ router.get("/addresses", catchAsyncErrors(async (req, res, next) => {
   });
 }
 ));
- 
 
 module.exports = router;
